@@ -1,0 +1,15 @@
+{
+  "name":"angular-parse-repositories",
+  "version":"1.0.0",
+  "keywords":["parse","angular","enolalabs"],
+  "main":"angular-parse-repositories.js",
+  "authors":[
+    {"name":"Enola Labs", "homepage":"http://enolalabs.com"}
+  ],
+  "repository": {
+    "type":"git",
+    "url":"git@bitbucket.org:enolaweb/angular-parse-repositories.git"
+  },
+  "private":false,
+  "ignore":["examples/", "tests/"]
+}
