@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular.js"></script>
+    <script src="https://parse.com/downloads/javascript/parse-1.3.4.js"></script>
+    <script src="parseRepositories.js"></script>
+    <script>
+        'use strict';
+        angular.module('app', ['parse'])
+        .config(['parseRepositoriesProvider', function(provider){
+           provider.init(Parse, 'applicationKey', 'javascriptKey');
+        }])
+        .service('countryService', ['parseRepositories', function($repos) {
+            var Countries = $repos.CreateRepository('Countries', {
+                'all' : {
+                    'queries':['query.ascending("name");','query.limit(1000);', 'query.include("flag");']
+                }
+            });
+
+            delete Countries.create;
+            delete Countries.delete;
+
+            $repos.GettersAndSetters(Countries, [
+                {angular:'name', parse:'name'},
+                {angular:'channel', parse:'pushChannel'},
+                {angular:'officialName', parse:'officialName'},
+                {angular:'flag', parse:'flag'} // Pointer to another class
+            ]);
+
+            return Countries;
+        }])
+        .controller('testCtrl', ['countryService', function($s){
+            $s.all().then(function(result){
+               console.log(result);
+            });
+        }]);
+    </script>
+</head>
+<body ng-controller="testCtrl">
+
+</body>
+</html>
