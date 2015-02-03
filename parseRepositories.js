@@ -135,6 +135,10 @@ angular.module('parse', [])
                     delete: function(obj) {
                         var defer = $q.defer();
 
+                        if(options.hasOwnProperty('delete') && options.delete.hasOwnProperty('beforeDelete')) {
+                            options.delete.beforeDelete(obj);
+                        }
+
                         if(options.hasOwnProperty('delete') && options.delete.hasOwnProperty('soft') && options.delete.soft === true) {
                             if(!options.delete.hasOwnProperty('softDeleteColumn')) {
                                 console.log('No soft delete column defined for the ' + className + ' class.');
