@@ -92,7 +92,7 @@ Employees.someNewFunction = function() {
 If you would like to replace the queries that are used on any of the methods provided, you can pass an array of query arguments as strings to the options object, on the method name property. The query object is always named 'query'. See Parse's [querying documentation](https://parse.com/docs/js_guide#queries) for details.
 
 ```js
-var Class = repos.CreateRepository('className', {
+var Class = repos.CreateRepository('Employees', {
     'all':{
         'queries':[
             'query.exists("activationDate");',
@@ -159,7 +159,7 @@ Hook Name        | Used In    | Accepts    | Is Passed
 These methods are very similar to the [cloud code methods](https://parse.com/docs/cloud_code_guide#functions-onsave) Parse provides. However, we understand there may be occasions where you don't want these specific hooks to be run globally on every object that hits the server. One popular reason for using these hooks is to tie into a user activity log or object relationship handling.
 
 ```js
-var Class = repos.CreateRepository('className', {
+var Class = repos.CreateRepository('Employees', {
     'save': {
         'beforeSave': function(obj) {
            // Format phone numbers to (###) ###-####
@@ -177,7 +177,7 @@ Repositories support 'soft deleting' entities. When an object is soft deleted, t
 To use soft deleting, include the boolean true on the delete object and specify the 'softDelete' column.
 
 ```js
-var Class = repos.CreateRepository('className', {
+var Class = repos.CreateRepository('Employees', {
     'delete':{
         'softDelete':true,
         'softDeleteColumn':'deletedAt'
@@ -204,7 +204,7 @@ alert(obj.name);
 This can be a real problem when you're working in Angular specific code, such as view templates, or if you just want to write abstracted code. To overcome this, you can pass an array of translation objects to the **GettersAndSetters** method. Each object should have an `angular` property and a `parse` property. The `angular` property defines the property that will be used on objects returned or created from the repository while the `parse` property defines the column that will be used on Parse's server. Notice that they do not have to be named the same thing. This also makes a really nice separation of concerns, so that if the names of properties on either the front end or back end, it does not have to affect the other.
 
 ```js
-var Class = repos.CreateRepository('ClassName', {});
+var Class = repos.CreateRepository('Employees', {});
 
 repos.GettersAndSetters(Class, [
     {angular:'name', parse:'name'},
