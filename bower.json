@@ -11,5 +11,5 @@
     "url":"git@bitbucket.org:enolaweb/angular-parse-repositories.git"
   },
   "private":false,
-  "ignore":["examples/", "tests/"]
+  "ignore":["index.html"]
 }
