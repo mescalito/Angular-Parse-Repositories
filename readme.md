@@ -67,7 +67,7 @@ By default, **CreateRepository()** returns an object with the following methods 
 Method Name       | Arguments         | Returns Promise? | Resolves With
 ----------------- | ----------------- | ---------------- | --------------------------
 `all()`           | none              | yes              | array of objects
-`count()`         | none              | yes              | inter
+`count()`         | none              | yes              | integer
 `get(objectId)`   | id of object      | yes              | object
 `create()`        | none              | no               | new object of class
 `save(object)`    | object to save    | yes              | pointer to object provided
