@@ -9,11 +9,6 @@ This package provides a quick and easy way to create repository patterened API o
 Parse's JS SDK works well for contacting and interacting with the server, but it's not very good for interacting with Angular. Parse promises don't resolve the Angular digest cycle and often require several approaches that aren't considered good practices. This library fixes that by giving a standardized API for any services you create to work with Parse, and abstracts away http requesting.
 
 
-
-[TOC]
-
-
-
 ## Installation
 
 You can either download code directly from this repository or pull the service into your probject using bower.
