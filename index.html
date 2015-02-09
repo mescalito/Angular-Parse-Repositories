@@ -31,14 +31,48 @@
 
             return Countries;
         }])
-        .controller('testCtrl', ['countryService', function($s){
-            $s.all().then(function(result){
-               console.log(result);
+        .controller('testCtrl', ['$scope', 'countryService', function($scope, countries){
+            $scope.Countries = [];
+            $scope.editCountry = {};
+            
+            
+            // Initialization
+            countries.all().then(function(result){
+               $scope.Countries = result;
             });
+            
+            // Grabbing a specific object.
+            $scope.editCounty = function(id)
+            {
+                countries.get(id).then(
+                    function(result) {
+                        $scope.editCountry = result;   
+                    },
+                    function(e) {
+                        // Handle error
+                    }    
+                );  
+            };
+            
+            // View calls this method when user saves
+            $scope.saveObject = function()
+            {
+                // Any validation here first
+                $scope.editCountry.flag = 'some new flag';
+                
+                countries.save($scope.editObject).then(
+                    function(result) {
+                        // Handle success   
+                    },
+                    function(e) {
+                        // Handle error
+                    }  
+                );
+            };
         }]);
     </script>
 </head>
 <body ng-controller="testCtrl">
-
+    <!-- Your HTML / Templates -->
 </body>
 </html>
