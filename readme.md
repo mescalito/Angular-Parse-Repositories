@@ -87,6 +87,25 @@ Employees.someNewFunction = function() {
 };
 ```
 
+### Creating Objects
+
+In order for any objects you create on the front-end to save to the server, you first need to create an object with the ```create()``` method. This is because we are essentially masking Parse objects with an Angular friendly interface, so we need to first create an actual Parse object and then fill it with data.
+
+```js
+var newEmployee = Employees.create();
+
+// Now we can use the provided setters, and getters.
+newEmployee.name = 'John Doe';
+newEmployee.email = 'john.doe@enolalabs.com';
+// Other code...
+
+Employees.save(newEmployee).then(function(result) {
+    // handle success
+}, function(e) {
+    // handle error
+});
+```
+
 ### Customizing Queries
 
 If you would like to replace the queries that are used on any of the methods provided, you can pass an array of query arguments as strings to the options object, on the method name property. The query object is always named 'query'. See Parse's [querying documentation](https://parse.com/docs/js_guide#queries) for details.
@@ -201,7 +220,7 @@ obj.name = 'JohnDoe';
 alert(obj.name);
 ```
 
-This can be a real problem when you're working in Angular specific code, such as view templates, or if you just want to write abstracted code. To overcome this, you can pass an array of translation objects to the **GettersAndSetters** method. Each object should have an `angular` property and a `parse` property. The `angular` property defines the property that will be used on objects returned or created from the repository while the `parse` property defines the column that will be used on Parse's server. Notice that they do not have to be named the same thing. This also makes a really nice separation of concerns, so that if the names of properties on either the front end or back end, it does not have to affect the other.
+This can be a real problem when you're working in Angular specific code, such as view templates, or if you just want to write abstracted code. To overcome this, you can pass an array of translation objects to the **GettersAndSetters** method. Each object should have an `angular` property and a `parse` property. The `angular` property defines the property that will be used on objects returned or created from the repository while the `parse` property defines the column that will be used on Parse's server. Notice that they do not have to be named the same thing. This also makes a really nice separation of concerns, so that if the names of properties on either the front end or back end change it does not have to affect the other.
 
 ```js
 var Class = repos.CreateRepository('Employees', {});
