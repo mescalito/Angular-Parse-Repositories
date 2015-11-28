@@ -91,7 +91,7 @@ angular.module('parse', [])
 
                         if(options.hasOwnProperty('get') && options.get.hasOwnProperty('queries')) {
                             for(var i = 0; i < options.get.queries.length; i ++) {
-                                eval(options.all.queries[i]);
+                                eval(options.get.queries[i]);
                             }
                         }
 
